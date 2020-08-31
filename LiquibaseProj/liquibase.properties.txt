@@ -1,6 +1,5 @@
-    changeLogFile: C:\\Users\\opc\\Desktop\\SONY\\Liquibase\\LiquibaseProj\\dbchangelog.xml
-    url: jdbc:oracle:thin:@pdborcl
-    username: HR_DEV
-    password: HR_DEV
-    driver: oracle.jdbc.OracleDriver
+	driver: oracle.jdbc.OracleDriver
     classpath: C:/Users/opc/Desktop/SONY/Liquibase/ojdbc8.jar
+    username: LQBASE
+    password: LQBase##123
+    
