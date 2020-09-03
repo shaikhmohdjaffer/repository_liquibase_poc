@@ -1,0 +1,122 @@
+{
+  "diff": {
+    "diffFormat": 1,
+    "created": "Thu Sep 03 17:42:33 UTC 2020",
+    "databases": {
+      "reference": {
+        "majorVersion": "Oracle Database 19c Standard Edition 2 Release 19",
+        "minorVersion": "0",
+        "name": "Oracle",
+        "url": "jdbc:oracle:thin:@152.67.2.223:1521/ltidbpdb.publicsubnet.commonvcn.oraclevcn.com"
+      },
+      "target": {
+        "majorVersion": "Oracle Database 19c Standard Edition 2 Release 19",
+        "minorVersion": "0",
+        "name": "Oracle",
+        "url": "jdbc:oracle:thin:@152.67.2.223:1521/ltidbpdb.publicsubnet.commonvcn.oraclevcn.com"
+      }
+    },
+    "missingObjects": [
+      {
+        "missingObject": {
+          "name": "NEW_COLUMN",
+          "type": "column",
+          "relationName": "ORDERS",
+          "schemaName": "LQBASE",
+          "catalogName": "LQBASE"
+        }
+      }]
+    ,
+    "unexpectedObjects": [
+      {
+        "unexpectedObject": {
+          "name": "STATUS",
+          "type": "column",
+          "relationName": "ORDERS1",
+          "schemaName": "LQBASE_DEV",
+          "catalogName": "LQBASE_DEV"
+        }
+      },
+      {
+        "unexpectedObject": {
+          "name": "ORDER_DATE",
+          "type": "column",
+          "relationName": "ORDERS1",
+          "schemaName": "LQBASE_DEV",
+          "catalogName": "LQBASE_DEV"
+        }
+      },
+      {
+        "unexpectedObject": {
+          "name": "ORDERS1",
+          "type": "table",
+          "schemaName": "LQBASE_DEV",
+          "catalogName": "LQBASE_DEV"
+        }
+      },
+      {
+        "unexpectedObject": {
+          "name": "ORDER_ID",
+          "type": "column",
+          "relationName": "ORDERS1",
+          "schemaName": "LQBASE_DEV",
+          "catalogName": "LQBASE_DEV"
+        }
+      },
+      {
+        "unexpectedObject": {
+          "name": "SALESMAN_ID",
+          "type": "column",
+          "relationName": "ORDERS1",
+          "schemaName": "LQBASE_DEV",
+          "catalogName": "LQBASE_DEV"
+        }
+      },
+      {
+        "unexpectedObject": {
+          "name": "SYS_C0089001",
+          "type": "primaryKey",
+          "schemaName": "LQBASE_DEV",
+          "catalogName": "LQBASE_DEV"
+        }
+      },
+      {
+        "unexpectedObject": {
+          "name": "CUSTOMER_ID",
+          "type": "column",
+          "relationName": "ORDERS1",
+          "schemaName": "LQBASE_DEV",
+          "catalogName": "LQBASE_DEV"
+        }
+      },
+      {
+        "unexpectedObject": {
+          "name": "SYS_C0089001",
+          "type": "index",
+          "schemaName": "LQBASE_DEV",
+          "catalogName": "LQBASE_DEV"
+        }
+      }]
+    ,
+    "changedObjects": [
+      {
+        "changedObject": {
+          "name": "GET_TOTAL_SALES",
+          "type": "function",
+          "schemaName": "LQBASE_DEV",
+          "catalogName": "LQBASE_DEV",
+          "differences": [
+            {
+              "difference": {
+                "comparedValue": true,
+                "field": "valid",
+                "message": "valid changed from 'false' to 'true'",
+                "referenceValue": false
+              }
+            }]
+          
+        }
+      }]
+    
+  }
+}
