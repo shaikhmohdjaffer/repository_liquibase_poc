@@ -1,0 +1,32 @@
+Database snapshot for jdbc:oracle:thin:@152.67.2.223:1521/ltidbpdb.publicsubnet.commonvcn.oraclevcn.com
+-----------------------------------------------------------------
+Database type: Oracle
+Database version: Oracle Database 19c Standard Edition 2 Release 19.0.0.0.0 - Production
+Version 19.8.0.0.0
+Database user: LQBASE_DEV
+Included types:
+    com.datical.liquibase.ext.appdba.synonym.Synonym
+    com.datical.liquibase.ext.storedlogic.checkconstraint.CheckConstraint
+    com.datical.liquibase.ext.storedlogic.databasepackage.DatabasePackage
+    com.datical.liquibase.ext.storedlogic.databasepackage.DatabasePackageBody
+    com.datical.liquibase.ext.storedlogic.function.Function
+    com.datical.liquibase.ext.storedlogic.trigger.Trigger
+    liquibase.structure.core.Catalog
+    liquibase.structure.core.Column
+    liquibase.structure.core.ForeignKey
+    liquibase.structure.core.Index
+    liquibase.structure.core.PrimaryKey
+    liquibase.structure.core.Schema
+    liquibase.structure.core.Sequence
+    liquibase.structure.core.StoredProcedure
+    liquibase.structure.core.Table
+    liquibase.structure.core.UniqueConstraint
+    liquibase.structure.core.View
+
+Catalog: LQBASE_DEV
+    com.datical.liquibase.ext.appdba.synonym.Synonym:
+        REGIONS_SYNONYM
+            objectName: REGIONS
+            private: true
+        
+    

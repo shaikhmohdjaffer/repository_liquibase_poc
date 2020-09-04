@@ -1,0 +1,43 @@
+"C:\Program Files\Red Gate\Schema Compare for Oracle 5\sco.exe"  /i:sdwgvac /source:REDGATE/REDGATE#123@pdborcl{HR_DEV} "/snp:C:/Artifacts/ReleaseState.onp"
+
+'C:\Windows\Temp\Artifacts\ReleaseState.onp'.
+
+
+liquibase --changeLogFile=dbchangelog_M3_SQL.h2.sql update
+
+liquibase --changeLogFile=dbchangelog_M3_XML.h2.xml update
+
+liquibase  generateChangeLog
+
+"jdbc:oracle://127.0.0.1:8080"
+
+liquibase --classpath=C:/Users/opc/Desktop/SONY/Liquibase/ojdbc8.jar --url="jdbc:oracle:thin:@ltidbpdb" --changeLogFile=dbchangelog.xml --username=LQBASE --password=LQBase##123 generateChangeLog
+
+
+liquibase --changeLogFile=dbchangelog_M3_XML.h2.xml --url=jdbc:h2:tcp://localhost:9090/mem:dev --username=dbuser --password=letmein
+
+
+liquibase --driver=oracle.jdbc.OracleDriver ^
+	  --classpath="C:/Users/opc/Desktop/SONY/Liquibase/ojdbc8.jar" ^
+      --changeLogFile="Department1.sql" ^
+      --url="jdbc:oracle:thin:@152.67.2.223:1521/ltidbpdb.publicsubnet.commonvcn.oraclevcn.com" ^
+      --username=LQBASE ^
+      --password=LQBase##123 ^
+      update
+	  
+
+liquibase --changeLogFile="C:\Users\opc\Desktop\SONY\Liquibase\LiquibaseProj\Department1.sql" ^
+		--url="jdbc:oracle:thin:@152.67.2.223:1521/ltidbpdb.publicsubnet.commonvcn.oraclevcn.com" ^
+		update
+		
+		
+liquibase --defaultsFile="/software/liquibase/test_liquibase.properties		
+
+liquibase rollbackOneChangeSet --changeSetAuthor=opc --changeSetID=1599045727273-1 --changeSetPath=LQBASE1.xml --force
+
+sqlplus LQBASE_DEV/LQBasedev##123@ltidbpdb @DropAllObjects.sql
+
+liquibase diffChangeLog
+
+
+liquibase --changeLogFile=MyDiff.xml --outputFile=future.txt futureRollbackSQL

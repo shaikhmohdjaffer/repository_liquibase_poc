@@ -1,0 +1,70 @@
+{
+  "snapshot": {
+    "created": "2020-09-04T13:12:36.588",
+    "database": {
+      "productVersion": "Oracle Database 19c Standard Edition 2 Release 19.0.0.0.0 - Production\nVersion 19.8.0.0.0",
+      "shortName": "oracle",
+      "majorVersion": "19",
+      "minorVersion": "0",
+      "user": "LQBASE_DEV",
+      "productName": "Oracle",
+      "url": "jdbc:oracle:thin:@152.67.2.223:1521/ltidbpdb.publicsubnet.commonvcn.oraclevcn.com"
+    },
+    "objects": {
+      "com.datical.liquibase.ext.appdba.synonym.Synonym": [
+        {
+          "synonym": {
+            "name": "REGIONS_SYNONYM",
+            "objectName": "REGIONS",
+            "objectSchema": "liquibase.structure.core.Schema#5cc1101",
+            "private": true,
+            "schema": "liquibase.structure.core.Schema#5cc1101",
+            "snapshotId": "5cc1102"
+          }
+        }]
+      ,
+      "liquibase.structure.core.Catalog": [
+        {
+          "catalog": {
+            "default": true,
+            "name": "LQBASE_DEV",
+            "snapshotId": "5cc1100"
+          }
+        }]
+      ,
+      "liquibase.structure.core.Schema": [
+        {
+          "schema": {
+            "catalog": "liquibase.structure.core.Catalog#5cc1100",
+            "default": true,
+            "name": "LQBASE_DEV",
+            "snapshotId": "5cc1101"
+          }
+        }]
+      
+    },
+    "snapshotControl": {
+      "snapshotControl": {
+        "includedType": [
+          "com.datical.liquibase.ext.appdba.synonym.Synonym",
+          "com.datical.liquibase.ext.storedlogic.checkconstraint.CheckConstraint",
+          "com.datical.liquibase.ext.storedlogic.databasepackage.DatabasePackage",
+          "com.datical.liquibase.ext.storedlogic.databasepackage.DatabasePackageBody",
+          "com.datical.liquibase.ext.storedlogic.function.Function",
+          "com.datical.liquibase.ext.storedlogic.trigger.Trigger",
+          "liquibase.structure.core.Catalog",
+          "liquibase.structure.core.Column",
+          "liquibase.structure.core.ForeignKey",
+          "liquibase.structure.core.Index",
+          "liquibase.structure.core.PrimaryKey",
+          "liquibase.structure.core.Schema",
+          "liquibase.structure.core.Sequence",
+          "liquibase.structure.core.StoredProcedure",
+          "liquibase.structure.core.Table",
+          "liquibase.structure.core.UniqueConstraint",
+          "liquibase.structure.core.View"]
+        
+      }
+    }
+  }
+}
