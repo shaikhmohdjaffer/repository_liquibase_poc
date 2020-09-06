@@ -1,5 +1,3 @@
-echo off
-
 echo == Delete objects folder and changeLog file for LQBASE schema if it already exists ==
 
 cd C:\Users\opc\Desktop\SONY\Liquibase\LQBASE\
