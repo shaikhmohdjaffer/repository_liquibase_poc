@@ -12,7 +12,3 @@ echo changeLog file deletion exit code:%ERRORLEVEL%
 
 echo == Generate a changeLog file with current state of the LQBASE schema ==
 liquibase --changeLogFile=C:\Users\opc\Desktop\SONY\Liquibase\LQBASE\LQBASE_changeLog.xml generateChangeLog
-
-
-echo == 
-echo == 
