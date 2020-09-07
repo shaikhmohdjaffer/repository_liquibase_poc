@@ -5,7 +5,7 @@ echo ==
 
 echo == Drop all objects from the LQBASE_CI_BUILD schema for build integration ==
 echo on
-Call exit | sqlplus LQBASE_CI_BUILD/LQBaseBuild##123@ltidbpdb @C:\Users\opc\Desktop\SONY\Liquibase\Tools\DropAllObjects.sql
+Call exit | sqlplus LQBASE/LQBase##123@ltidbpdb @C:\Users\opc\Desktop\SONY\Liquibase\Tools\Drop_LQBASE_CI_BUILD.sql
 echo off
 
 echo == Generate sqlscripts which are going to be executed as a part of build process ==
