@@ -1,0 +1,16 @@
+##LQBASE-Dev
+
+echo off
+
+echo == Delete objects folder and changeLog file for LQBASE_DEV schema if it already exists ==
+
+cd C:\Users\opc\Desktop\SONY\Liquibase\LQBASE_DEV
+rmdir /Q /S objects
+echo Folder deletion exit code:%ERRORLEVEL% 
+
+del LQBASE_DEV_changeLog.xml
+echo changeLog file deletion exit code:%ERRORLEVEL% 
+
+echo == Generate a changeLog file with current state of the LQBASE_DEV schema ==
+
+liquibase --changeLogFile=C:\Users\opc\Desktop\SONY\Liquibase\LQBASE_DEV\LQBASE_DEV_changeLog.xml generateChangeLog
