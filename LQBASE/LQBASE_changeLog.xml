@@ -1,6 +1,6 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
-    <changeSet author="opc (generated)" id="1599404800981-1">
+    <changeSet author="opc (generated)" id="1599454104175-1">
         <createTable tableName="ORDERS" tablespace="USERS">
             <column autoIncrement="true" defaultOnNull="false" generationType="BY DEFAULT" name="ORDER_ID" type="NUMBER">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C008900"/>
@@ -18,7 +18,7 @@
             <column name="NEW_COLUMN" type="CHAR(2 BYTE)"/>
         </createTable>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-2">
+    <changeSet author="opc (generated)" id="1599454104175-2">
         <createTable tableName="ORDER_ITEMS" tablespace="USERS">
             <column name="ORDER_ID" type="NUMBER(12, 0)">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ORDER_ITEMS"/>
@@ -37,7 +37,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-3">
+    <changeSet author="opc (generated)" id="1599454104175-3">
         <createTable tableName="CONTACTS" tablespace="USERS">
             <column autoIncrement="true" defaultOnNull="false" generationType="BY DEFAULT" name="CONTACT_ID" type="NUMBER">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C008894"/>
@@ -53,9 +53,10 @@
             </column>
             <column name="PHONE" type="VARCHAR2(20 BYTE)"/>
             <column name="CUSTOMER_ID" type="NUMBER"/>
+            <column name="LINKEDIN" type="VARCHAR2(20 BYTE)"/>
         </createTable>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-4">
+    <changeSet author="opc (generated)" id="1599454104175-4">
         <createTable tableName="REGIONS" tablespace="USERS">
             <column autoIncrement="true" defaultOnNull="false" generationType="BY DEFAULT" name="REGION_ID" type="NUMBER">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C008859"/>
@@ -65,7 +66,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-5">
+    <changeSet author="opc (generated)" id="1599454104175-5">
         <createTable tableName="CUSTOMERS" tablespace="USERS">
             <column autoIncrement="true" defaultOnNull="false" generationType="BY DEFAULT" name="CUSTOMER_ID" type="NUMBER">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C008889"/>
@@ -78,7 +79,7 @@
             <column name="CREDIT_LIMIT" type="NUMBER(8, 2)"/>
         </createTable>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-6">
+    <changeSet author="opc (generated)" id="1599454104175-6">
         <createTable tableName="AUDITS" tablespace="USERS">
             <column autoIncrement="true" defaultOnNull="false" generationType="BY DEFAULT" name="AUDIT_ID" type="NUMBER">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C008914"/>
@@ -89,7 +90,7 @@
             <column name="TRANSACTION_DATE" type="date"/>
         </createTable>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-7">
+    <changeSet author="opc (generated)" id="1599454104175-7">
         <createView fullDefinition="true" viewName="CUSTOMER_SALES">CREATE OR REPLACE FORCE VIEW "CUSTOMER_SALES" ("CUSTOMER", "SALES_AMOUNT", "YEAR") AS SELECT
     name AS customer,
     SUM( quantity * unit_price ) sales_amount,
@@ -114,22 +115,22 @@ GROUP BY
         order_date
     )</createView>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-8">
+    <changeSet author="opc (generated)" id="1599454104175-8">
         <pro:createFunction functionName="GET_TOTAL_SALES" path="objects/function/GET_TOTAL_SALES.sql" relativeToChangelogFile="true"/>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-9">
+    <changeSet author="opc (generated)" id="1599454104175-9">
         <createProcedure path="objects/storedprocedure/PRINT_CONTACT.sql" procedureName="PRINT_CONTACT" relativeToChangelogFile="true"/>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-10">
+    <changeSet author="opc (generated)" id="1599454104175-10">
         <pro:createSynonym objectName="REGIONS" private="true" synonymName="REGIONS_SYNONYM"/>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-11">
+    <changeSet author="opc (generated)" id="1599454104175-11">
         <pro:createTrigger disabled="false" path="objects/trigger/CUSTOMERS_AUDIT_TRG.sql" relativeToChangelogFile="true" tableName="CUSTOMERS" triggerName="CUSTOMERS_AUDIT_TRG"/>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-12">
+    <changeSet author="opc (generated)" id="1599454104175-12">
         <createSequence maxValue="9999999999999999999999999999" sequenceName="SEQ_TEST" startValue="1"/>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-13">
+    <changeSet author="opc (generated)" id="1599454104175-13">
         <createTable tableName="COUNTRIES" tablespace="USERS">
             <column name="COUNTRY_ID" type="CHAR(2 BYTE)">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C008861"/>
@@ -140,7 +141,7 @@ GROUP BY
             <column name="REGION_ID" type="NUMBER"/>
         </createTable>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-14">
+    <changeSet author="opc (generated)" id="1599454104175-14">
         <createTable tableName="EMPLOYEES" tablespace="USERS">
             <column autoIncrement="true" defaultOnNull="false" generationType="BY DEFAULT" name="EMPLOYEE_ID" type="NUMBER">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C008877"/>
@@ -166,7 +167,7 @@ GROUP BY
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-15">
+    <changeSet author="opc (generated)" id="1599454104175-15">
         <createTable tableName="INVENTORIES" tablespace="USERS">
             <column name="PRODUCT_ID" type="NUMBER(12, 0)">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_INVENTORIES"/>
@@ -179,7 +180,7 @@ GROUP BY
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-16">
+    <changeSet author="opc (generated)" id="1599454104175-16">
         <createTable tableName="LOCATIONS" tablespace="USERS">
             <column autoIncrement="true" defaultOnNull="false" generationType="BY DEFAULT" name="LOCATION_ID" type="NUMBER">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C008865"/>
@@ -193,7 +194,7 @@ GROUP BY
             <column name="COUNTRY_ID" type="CHAR(2 BYTE)"/>
         </createTable>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-17">
+    <changeSet author="opc (generated)" id="1599454104175-17">
         <createTable tableName="PRODUCTS" tablespace="USERS">
             <column autoIncrement="true" defaultOnNull="false" generationType="BY DEFAULT" name="PRODUCT_ID" type="NUMBER">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C008885"/>
@@ -209,7 +210,7 @@ GROUP BY
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-18">
+    <changeSet author="opc (generated)" id="1599454104175-18">
         <createTable tableName="PRODUCT_CATEGORIES" tablespace="USERS">
             <column autoIncrement="true" defaultOnNull="false" generationType="BY DEFAULT" name="CATEGORY_ID" type="NUMBER">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C008881"/>
@@ -219,7 +220,7 @@ GROUP BY
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-19">
+    <changeSet author="opc (generated)" id="1599454104175-19">
         <createTable tableName="WAREHOUSES" tablespace="USERS">
             <column autoIncrement="true" defaultOnNull="false" generationType="BY DEFAULT" name="WAREHOUSE_ID" type="NUMBER">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C008868"/>
@@ -228,40 +229,40 @@ GROUP BY
             <column name="LOCATION_ID" type="NUMBER(12, 0)"/>
         </createTable>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-20">
+    <changeSet author="opc (generated)" id="1599454104175-20">
         <addForeignKeyConstraint baseColumnNames="CUSTOMER_ID" baseTableName="CONTACTS" constraintName="FK_CONTACTS_CUSTOMERS" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="CUSTOMER_ID" referencedTableName="CUSTOMERS" validate="true"/>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-21">
+    <changeSet author="opc (generated)" id="1599454104175-21">
         <addForeignKeyConstraint baseColumnNames="REGION_ID" baseTableName="COUNTRIES" constraintName="FK_COUNTRIES_REGIONS" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="REGION_ID" referencedTableName="REGIONS" validate="true"/>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-22">
+    <changeSet author="opc (generated)" id="1599454104175-22">
         <addForeignKeyConstraint baseColumnNames="MANAGER_ID" baseTableName="EMPLOYEES" constraintName="FK_EMPLOYEES_MANAGER" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="EMPLOYEE_ID" referencedTableName="EMPLOYEES" validate="true"/>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-23">
+    <changeSet author="opc (generated)" id="1599454104175-23">
         <addForeignKeyConstraint baseColumnNames="PRODUCT_ID" baseTableName="INVENTORIES" constraintName="FK_INVENTORIES_PRODUCTS" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="PRODUCT_ID" referencedTableName="PRODUCTS" validate="true"/>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-24">
+    <changeSet author="opc (generated)" id="1599454104175-24">
         <addForeignKeyConstraint baseColumnNames="WAREHOUSE_ID" baseTableName="INVENTORIES" constraintName="FK_INVENTORIES_WAREHOUSES" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="WAREHOUSE_ID" referencedTableName="WAREHOUSES" validate="true"/>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-25">
+    <changeSet author="opc (generated)" id="1599454104175-25">
         <addForeignKeyConstraint baseColumnNames="COUNTRY_ID" baseTableName="LOCATIONS" constraintName="FK_LOCATIONS_COUNTRIES" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="COUNTRY_ID" referencedTableName="COUNTRIES" validate="true"/>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-26">
+    <changeSet author="opc (generated)" id="1599454104175-26">
         <addForeignKeyConstraint baseColumnNames="CUSTOMER_ID" baseTableName="ORDERS" constraintName="FK_ORDERS_CUSTOMERS" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="CUSTOMER_ID" referencedTableName="CUSTOMERS" validate="true"/>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-27">
+    <changeSet author="opc (generated)" id="1599454104175-27">
         <addForeignKeyConstraint baseColumnNames="SALESMAN_ID" baseTableName="ORDERS" constraintName="FK_ORDERS_EMPLOYEES" deferrable="false" initiallyDeferred="false" onDelete="SET NULL" onUpdate="RESTRICT" referencedColumnNames="EMPLOYEE_ID" referencedTableName="EMPLOYEES" validate="true"/>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-28">
+    <changeSet author="opc (generated)" id="1599454104175-28">
         <addForeignKeyConstraint baseColumnNames="ORDER_ID" baseTableName="ORDER_ITEMS" constraintName="FK_ORDER_ITEMS_ORDERS" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="ORDER_ID" referencedTableName="ORDERS" validate="true"/>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-29">
+    <changeSet author="opc (generated)" id="1599454104175-29">
         <addForeignKeyConstraint baseColumnNames="PRODUCT_ID" baseTableName="ORDER_ITEMS" constraintName="FK_ORDER_ITEMS_PRODUCTS" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="PRODUCT_ID" referencedTableName="PRODUCTS" validate="true"/>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-30">
+    <changeSet author="opc (generated)" id="1599454104175-30">
         <addForeignKeyConstraint baseColumnNames="CATEGORY_ID" baseTableName="PRODUCTS" constraintName="FK_PRODUCTS_CATEGORIES" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="CATEGORY_ID" referencedTableName="PRODUCT_CATEGORIES" validate="true"/>
     </changeSet>
-    <changeSet author="opc (generated)" id="1599404800981-31">
+    <changeSet author="opc (generated)" id="1599454104175-31">
         <addForeignKeyConstraint baseColumnNames="LOCATION_ID" baseTableName="WAREHOUSES" constraintName="FK_WAREHOUSES_LOCATIONS" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="LOCATION_ID" referencedTableName="LOCATIONS" validate="true"/>
     </changeSet>
 </databaseChangeLog>
