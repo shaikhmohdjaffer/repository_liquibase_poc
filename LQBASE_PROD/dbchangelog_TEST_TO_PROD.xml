@@ -1,0 +1,33 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="opc (generated)" id="1599489108742-2">
+        <addColumn tableName="CONTACTS">
+            <column name="LINKEDIN" type="VARCHAR(20 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="opc (generated)" id="1599489108742-1">
+        <createView fullDefinition="true" replaceIfExists="true" viewName="CUSTOMER_SALES">CREATE OR REPLACE FORCE VIEW CUSTOMER_SALES (CUSTOMER_NAME, SALES_AMOUNT, YEAR) AS SELECT
+    name AS customer_name,
+    SUM( quantity * unit_price ) sales_amount,
+    EXTRACT(
+        YEAR
+    FROM
+        order_date
+    ) YEAR
+FROM
+    orders
+INNER JOIN order_items
+        USING(order_id)
+INNER JOIN customers
+        USING(customer_id)
+WHERE
+    status = 'Shipped'
+GROUP BY
+    name,
+    EXTRACT(
+        YEAR
+    FROM
+        order_date
+    )</createView>
+    </changeSet>
+</databaseChangeLog>

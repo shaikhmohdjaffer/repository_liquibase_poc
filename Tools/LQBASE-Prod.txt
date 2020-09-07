@@ -1,0 +1,44 @@
+##LQBASE-Prod
+
+##LQBASE-Prod-Build1
+echo off
+echo == Execute diff command to generate difference between two schemas before applying changelog ==
+
+cd C:\Users\opc\Desktop\SONY\Liquibase\LQBASE_PROD
+
+liquibase --outputFile=mydiff_TEST_TO_PROD_Before.txt ^
+--referenceUrl="jdbc:oracle:thin:@152.67.2.223:1521/ltidbpdb.publicsubnet.commonvcn.oraclevcn.com" ^
+--referenceUsername=LQBASE_TEST ^
+--referencePassword=LQBasetest##123 ^
+diff
+
+##LQBASE-Prod-Build2
+echo off
+echo == Execute diffChangeLog command to generate changelog based on the differences between the schemas ==
+
+cd C:\Users\opc\Desktop\SONY\Liquibase\LQBASE_PROD
+
+liquibase --changeLogFile=dbchangelog_TEST_TO_PROD.xml ^
+--referenceUrl="jdbc:oracle:thin:@152.67.2.223:1521/ltidbpdb.publicsubnet.commonvcn.oraclevcn.com" ^
+--referenceUsername=LQBASE_TEST ^
+--referencePassword=LQBasetest##123 ^
+diffChangeLog
+
+##LQBASE-Prod-Build3
+echo off
+echo == Execute update command to apply the changes using the changeLogFile ==
+
+cd C:\Users\opc\Desktop\SONY\Liquibase\LQBASE_PROD
+
+liquibase --changeLogFile=C:\Users\opc\Desktop\SONY\Liquibase\LQBASE_PROD\dbchangelog_TEST_TO_PROD.xml --outputFile=dbchangelog_Script_TEST_TO_PROD.sql updateSQL
+
+##LQBASE-Prod-Build4
+echo off
+echo == Execute diff command after applying changelogs to validate the changes ==
+
+cd C:\Users\opc\Desktop\SONY\Liquibase\LQBASE_PROD
+liquibase --outputFile=mydiff_TEST_TO_PROD_After.txt ^
+--referenceUrl="jdbc:oracle:thin:@152.67.2.223:1521/ltidbpdb.publicsubnet.commonvcn.oraclevcn.com" ^
+--referenceUsername=LQBASE_TEST ^
+--referencePassword=LQBasetest##123 ^
+diff

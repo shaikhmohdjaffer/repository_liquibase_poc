@@ -1,0 +1,52 @@
+##LQBASE-CI-Build-GenerateChangeLog
+
+echo off
+
+echo == Delete objects folder and changeLog file for LQBASE schema if it already exists ==
+
+cd C:\Users\opc\Desktop\SONY\Liquibase\LQBASE
+rmdir /Q /S objects
+echo Folder deletion exit code:%ERRORLEVEL% 
+
+del LQBASE_changeLog.xml
+echo changeLog file deletion exit code:%ERRORLEVEL% 
+
+echo == Generate a changeLog file with current state of the LQBASE schema ==
+
+liquibase --changeLogFile=C:\Users\opc\Desktop\SONY\Liquibase\LQBASE\LQBASE_changeLog.xml generateChangeLog
+
+
+
+##LQBASE-Build
+echo off
+
+echo == Drop all objects from the LQBASE_CI_BUILD schema for build integration ==
+echo on
+Call exit | sqlplus LQBASE/LQBase##123@ltidbpdb @C:\Users\opc\Desktop\SONY\Liquibase\Tools\Drop_LQBASE_CI_BUILD.sql
+
+echo off
+echo == Generate sqlscripts which are going to be executed as a part of build process ==
+cd C:\Users\opc\Desktop\SONY\Liquibase\LQBASE_CI_BUILD
+liquibase --changeLogFile=C:\Users\opc\Desktop\SONY\Liquibase\LQBASE\LQBASE_changeLog.xml --outputFile=LQBASE_CI_BUILD_deployment_script.sql updateSQL
+
+
+echo off
+
+echo == Execute the update command to create the objects using LQBASE_changeLog.xml file in LQBASE_CI_BUILD schema
+
+cd C:\Users\opc\Desktop\SONY\Liquibase\LQBASE_CI_BUILD
+
+liquibase --changeLogFile=C:\Users\opc\Desktop\SONY\Liquibase\LQBASE\LQBASE_changeLog.xml update
+
+
+echo off
+
+echo == Execute the diff command to generate diff file for validation ==
+
+cd C:\Users\opc\Desktop\SONY\Liquibase\LQBASE_CI_BUILD
+
+liquibase --outputFile=mydiff_LQBASE_and_BUILD.txt ^
+--referenceUrl="jdbc:oracle:thin:@152.67.2.223:1521/ltidbpdb.publicsubnet.commonvcn.oraclevcn.com" ^
+--referenceUsername=LQBASE ^
+--referencePassword=LQBase##123 ^
+diff
