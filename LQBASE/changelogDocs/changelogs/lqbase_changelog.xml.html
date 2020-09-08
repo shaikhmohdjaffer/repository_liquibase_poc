@@ -1,0 +1,267 @@
+<html><body><pre>
+&lt;?xml version="1.1" encoding="UTF-8" standalone="no"?&gt;
+&lt;databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd"&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-1"&gt;
+        &lt;createTable tableName="ORDERS" tablespace="USERS"&gt;
+            &lt;column autoIncrement="true" defaultOnNull="false" generationType="BY DEFAULT" name="ORDER_ID" type="NUMBER"&gt;
+                &lt;constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C008900"/&gt;
+            &lt;/column&gt;
+            &lt;column name="CUSTOMER_ID" type="NUMBER(6, 0)"&gt;
+                &lt;constraints nullable="false"/&gt;
+            &lt;/column&gt;
+            &lt;column name="STATUS" type="VARCHAR2(20 BYTE)"&gt;
+                &lt;constraints nullable="false"/&gt;
+            &lt;/column&gt;
+            &lt;column name="SALESMAN_ID" type="NUMBER(6, 0)"/&gt;
+            &lt;column name="ORDER_DATE" type="date"&gt;
+                &lt;constraints nullable="false"/&gt;
+            &lt;/column&gt;
+            &lt;column name="NEW_COLUMN" type="CHAR(2 BYTE)"/&gt;
+        &lt;/createTable&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-2"&gt;
+        &lt;createTable tableName="ORDER_ITEMS" tablespace="USERS"&gt;
+            &lt;column name="ORDER_ID" type="NUMBER(12, 0)"&gt;
+                &lt;constraints nullable="false" primaryKey="true" primaryKeyName="PK_ORDER_ITEMS"/&gt;
+            &lt;/column&gt;
+            &lt;column name="ITEM_ID" type="NUMBER(12, 0)"&gt;
+                &lt;constraints nullable="false" primaryKey="true" primaryKeyName="PK_ORDER_ITEMS"/&gt;
+            &lt;/column&gt;
+            &lt;column name="PRODUCT_ID" type="NUMBER(12, 0)"&gt;
+                &lt;constraints nullable="false"/&gt;
+            &lt;/column&gt;
+            &lt;column name="QUANTITY" type="NUMBER(8, 2)"&gt;
+                &lt;constraints nullable="false"/&gt;
+            &lt;/column&gt;
+            &lt;column name="UNIT_PRICE" type="NUMBER(8, 2)"&gt;
+                &lt;constraints nullable="false"/&gt;
+            &lt;/column&gt;
+        &lt;/createTable&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-3"&gt;
+        &lt;createTable tableName="CONTACTS" tablespace="USERS"&gt;
+            &lt;column autoIncrement="true" defaultOnNull="false" generationType="BY DEFAULT" name="CONTACT_ID" type="NUMBER"&gt;
+                &lt;constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C008894"/&gt;
+            &lt;/column&gt;
+            &lt;column name="FIRST_NAME" type="VARCHAR2(255 BYTE)"&gt;
+                &lt;constraints nullable="false"/&gt;
+            &lt;/column&gt;
+            &lt;column name="LAST_NAME" type="VARCHAR2(255 BYTE)"&gt;
+                &lt;constraints nullable="false"/&gt;
+            &lt;/column&gt;
+            &lt;column name="EMAIL" type="VARCHAR2(255 BYTE)"&gt;
+                &lt;constraints nullable="false"/&gt;
+            &lt;/column&gt;
+            &lt;column name="PHONE" type="VARCHAR2(20 BYTE)"/&gt;
+            &lt;column name="CUSTOMER_ID" type="NUMBER"/&gt;
+        &lt;/createTable&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-4"&gt;
+        &lt;createTable tableName="CUSTOMERS" tablespace="USERS"&gt;
+            &lt;column autoIncrement="true" defaultOnNull="false" generationType="BY DEFAULT" name="CUSTOMER_ID" type="NUMBER"&gt;
+                &lt;constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C008889"/&gt;
+            &lt;/column&gt;
+            &lt;column name="NAME" type="VARCHAR2(255 BYTE)"&gt;
+                &lt;constraints nullable="false"/&gt;
+            &lt;/column&gt;
+            &lt;column name="ADDRESS" type="VARCHAR2(255 BYTE)"/&gt;
+            &lt;column name="WEBSITE" type="VARCHAR2(255 BYTE)"/&gt;
+            &lt;column name="CREDIT_LIMIT" type="NUMBER(8, 2)"/&gt;
+        &lt;/createTable&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-5"&gt;
+        &lt;createTable tableName="AUDITS" tablespace="USERS"&gt;
+            &lt;column autoIncrement="true" defaultOnNull="false" generationType="BY DEFAULT" name="AUDIT_ID" type="NUMBER"&gt;
+                &lt;constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C008914"/&gt;
+            &lt;/column&gt;
+            &lt;column name="TABLE_NAME" type="VARCHAR2(255 BYTE)"/&gt;
+            &lt;column name="TRANSACTION_NAME" type="VARCHAR2(10 BYTE)"/&gt;
+            &lt;column name="BY_USER" type="VARCHAR2(30 BYTE)"/&gt;
+            &lt;column name="TRANSACTION_DATE" type="date"/&gt;
+        &lt;/createTable&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-6"&gt;
+        &lt;createView fullDefinition="true" viewName="CUSTOMER_SALES"&gt;CREATE OR REPLACE FORCE VIEW "CUSTOMER_SALES" ("CUSTOMER", "SALES_AMOUNT", "YEAR") AS SELECT
+    name AS customer,
+    SUM( quantity * unit_price ) sales_amount,
+    EXTRACT(
+        YEAR
+    FROM
+        order_date
+    ) YEAR
+FROM
+    orders
+INNER JOIN order_items
+        USING(order_id)
+INNER JOIN customers
+        USING(customer_id)
+WHERE
+    status = 'Shipped'
+GROUP BY
+    name,
+    EXTRACT(
+        YEAR
+    FROM
+        order_date
+    )&lt;/createView&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-7"&gt;
+        &lt;pro:createFunction functionName="GET_TOTAL_SALES" path="objects/function/GET_TOTAL_SALES.sql" relativeToChangelogFile="true"/&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-8"&gt;
+        &lt;createProcedure path="objects/storedprocedure/PRINT_CONTACT.sql" procedureName="PRINT_CONTACT" relativeToChangelogFile="true"/&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-9"&gt;
+        &lt;pro:createTrigger disabled="false" path="objects/trigger/CUSTOMERS_AUDIT_TRG.sql" relativeToChangelogFile="true" tableName="CUSTOMERS" triggerName="CUSTOMERS_AUDIT_TRG"/&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-10"&gt;
+        &lt;createSequence maxValue="9999999999999999999999999999" sequenceName="SEQ_TEST" startValue="1"/&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-11"&gt;
+        &lt;createTable tableName="COUNTRIES" tablespace="USERS"&gt;
+            &lt;column name="COUNTRY_ID" type="CHAR(2 BYTE)"&gt;
+                &lt;constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C008861"/&gt;
+            &lt;/column&gt;
+            &lt;column name="COUNTRY_NAME" type="VARCHAR2(40 BYTE)"&gt;
+                &lt;constraints nullable="false"/&gt;
+            &lt;/column&gt;
+            &lt;column name="REGION_ID" type="NUMBER"/&gt;
+        &lt;/createTable&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-12"&gt;
+        &lt;createTable tableName="EMPLOYEES" tablespace="USERS"&gt;
+            &lt;column autoIncrement="true" defaultOnNull="false" generationType="BY DEFAULT" name="EMPLOYEE_ID" type="NUMBER"&gt;
+                &lt;constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C008877"/&gt;
+            &lt;/column&gt;
+            &lt;column name="FIRST_NAME" type="VARCHAR2(255 BYTE)"&gt;
+                &lt;constraints nullable="false"/&gt;
+            &lt;/column&gt;
+            &lt;column name="LAST_NAME" type="VARCHAR2(255 BYTE)"&gt;
+                &lt;constraints nullable="false"/&gt;
+            &lt;/column&gt;
+            &lt;column name="EMAIL" type="VARCHAR2(255 BYTE)"&gt;
+                &lt;constraints nullable="false"/&gt;
+            &lt;/column&gt;
+            &lt;column name="PHONE" type="VARCHAR2(50 BYTE)"&gt;
+                &lt;constraints nullable="false"/&gt;
+            &lt;/column&gt;
+            &lt;column name="HIRE_DATE" type="date"&gt;
+                &lt;constraints nullable="false"/&gt;
+            &lt;/column&gt;
+            &lt;column name="MANAGER_ID" type="NUMBER(12, 0)"/&gt;
+            &lt;column name="JOB_TITLE" type="VARCHAR2(255 BYTE)"&gt;
+                &lt;constraints nullable="false"/&gt;
+            &lt;/column&gt;
+        &lt;/createTable&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-13"&gt;
+        &lt;createTable tableName="INVENTORIES" tablespace="USERS"&gt;
+            &lt;column name="PRODUCT_ID" type="NUMBER(12, 0)"&gt;
+                &lt;constraints nullable="false" primaryKey="true" primaryKeyName="PK_INVENTORIES"/&gt;
+            &lt;/column&gt;
+            &lt;column name="WAREHOUSE_ID" type="NUMBER(12, 0)"&gt;
+                &lt;constraints nullable="false" primaryKey="true" primaryKeyName="PK_INVENTORIES"/&gt;
+            &lt;/column&gt;
+            &lt;column name="QUANTITY" type="NUMBER(8, 0)"&gt;
+                &lt;constraints nullable="false"/&gt;
+            &lt;/column&gt;
+        &lt;/createTable&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-14"&gt;
+        &lt;createTable tableName="LOCATIONS" tablespace="USERS"&gt;
+            &lt;column autoIncrement="true" defaultOnNull="false" generationType="BY DEFAULT" name="LOCATION_ID" type="NUMBER"&gt;
+                &lt;constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C008865"/&gt;
+            &lt;/column&gt;
+            &lt;column name="ADDRESS" type="VARCHAR2(255 BYTE)"&gt;
+                &lt;constraints nullable="false"/&gt;
+            &lt;/column&gt;
+            &lt;column name="POSTAL_CODE" type="VARCHAR2(20 BYTE)"/&gt;
+            &lt;column name="CITY" type="VARCHAR2(50 BYTE)"/&gt;
+            &lt;column name="STATE" type="VARCHAR2(50 BYTE)"/&gt;
+            &lt;column name="COUNTRY_ID" type="CHAR(2 BYTE)"/&gt;
+        &lt;/createTable&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-15"&gt;
+        &lt;createTable tableName="PRODUCTS" tablespace="USERS"&gt;
+            &lt;column autoIncrement="true" defaultOnNull="false" generationType="BY DEFAULT" name="PRODUCT_ID" type="NUMBER"&gt;
+                &lt;constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C008885"/&gt;
+            &lt;/column&gt;
+            &lt;column name="PRODUCT_NAME" type="VARCHAR2(255 BYTE)"&gt;
+                &lt;constraints nullable="false"/&gt;
+            &lt;/column&gt;
+            &lt;column name="DESCRIPTION" type="VARCHAR2(2000 BYTE)"/&gt;
+            &lt;column name="STANDARD_COST" type="NUMBER(9, 2)"/&gt;
+            &lt;column name="LIST_PRICE" type="NUMBER(9, 2)"/&gt;
+            &lt;column name="CATEGORY_ID" type="NUMBER"&gt;
+                &lt;constraints nullable="false"/&gt;
+            &lt;/column&gt;
+        &lt;/createTable&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-16"&gt;
+        &lt;createTable tableName="PRODUCT_CATEGORIES" tablespace="USERS"&gt;
+            &lt;column autoIncrement="true" defaultOnNull="false" generationType="BY DEFAULT" name="CATEGORY_ID" type="NUMBER"&gt;
+                &lt;constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C008881"/&gt;
+            &lt;/column&gt;
+            &lt;column name="CATEGORY_NAME" type="VARCHAR2(255 BYTE)"&gt;
+                &lt;constraints nullable="false"/&gt;
+            &lt;/column&gt;
+        &lt;/createTable&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-17"&gt;
+        &lt;createTable tableName="REGIONS" tablespace="USERS"&gt;
+            &lt;column autoIncrement="true" defaultOnNull="false" generationType="BY DEFAULT" name="REGION_ID" type="NUMBER"&gt;
+                &lt;constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C008859"/&gt;
+            &lt;/column&gt;
+            &lt;column name="REGION_NAME" type="VARCHAR2(50 BYTE)"&gt;
+                &lt;constraints nullable="false"/&gt;
+            &lt;/column&gt;
+        &lt;/createTable&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-18"&gt;
+        &lt;createTable tableName="WAREHOUSES" tablespace="USERS"&gt;
+            &lt;column autoIncrement="true" defaultOnNull="false" generationType="BY DEFAULT" name="WAREHOUSE_ID" type="NUMBER"&gt;
+                &lt;constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C008868"/&gt;
+            &lt;/column&gt;
+            &lt;column name="WAREHOUSE_NAME" type="VARCHAR2(255 BYTE)"/&gt;
+            &lt;column name="LOCATION_ID" type="NUMBER(12, 0)"/&gt;
+        &lt;/createTable&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-19"&gt;
+        &lt;addForeignKeyConstraint baseColumnNames="CUSTOMER_ID" baseTableName="CONTACTS" constraintName="FK_CONTACTS_CUSTOMERS" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="CUSTOMER_ID" referencedTableName="CUSTOMERS" validate="true"/&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-20"&gt;
+        &lt;addForeignKeyConstraint baseColumnNames="REGION_ID" baseTableName="COUNTRIES" constraintName="FK_COUNTRIES_REGIONS" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="REGION_ID" referencedTableName="REGIONS" validate="true"/&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-21"&gt;
+        &lt;addForeignKeyConstraint baseColumnNames="MANAGER_ID" baseTableName="EMPLOYEES" constraintName="FK_EMPLOYEES_MANAGER" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="EMPLOYEE_ID" referencedTableName="EMPLOYEES" validate="true"/&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-22"&gt;
+        &lt;addForeignKeyConstraint baseColumnNames="PRODUCT_ID" baseTableName="INVENTORIES" constraintName="FK_INVENTORIES_PRODUCTS" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="PRODUCT_ID" referencedTableName="PRODUCTS" validate="true"/&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-23"&gt;
+        &lt;addForeignKeyConstraint baseColumnNames="WAREHOUSE_ID" baseTableName="INVENTORIES" constraintName="FK_INVENTORIES_WAREHOUSES" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="WAREHOUSE_ID" referencedTableName="WAREHOUSES" validate="true"/&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-24"&gt;
+        &lt;addForeignKeyConstraint baseColumnNames="COUNTRY_ID" baseTableName="LOCATIONS" constraintName="FK_LOCATIONS_COUNTRIES" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="COUNTRY_ID" referencedTableName="COUNTRIES" validate="true"/&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-25"&gt;
+        &lt;addForeignKeyConstraint baseColumnNames="CUSTOMER_ID" baseTableName="ORDERS" constraintName="FK_ORDERS_CUSTOMERS" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="CUSTOMER_ID" referencedTableName="CUSTOMERS" validate="true"/&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-26"&gt;
+        &lt;addForeignKeyConstraint baseColumnNames="SALESMAN_ID" baseTableName="ORDERS" constraintName="FK_ORDERS_EMPLOYEES" deferrable="false" initiallyDeferred="false" onDelete="SET NULL" onUpdate="RESTRICT" referencedColumnNames="EMPLOYEE_ID" referencedTableName="EMPLOYEES" validate="true"/&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-27"&gt;
+        &lt;addForeignKeyConstraint baseColumnNames="ORDER_ID" baseTableName="ORDER_ITEMS" constraintName="FK_ORDER_ITEMS_ORDERS" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="ORDER_ID" referencedTableName="ORDERS" validate="true"/&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-28"&gt;
+        &lt;addForeignKeyConstraint baseColumnNames="PRODUCT_ID" baseTableName="ORDER_ITEMS" constraintName="FK_ORDER_ITEMS_PRODUCTS" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="PRODUCT_ID" referencedTableName="PRODUCTS" validate="true"/&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-29"&gt;
+        &lt;addForeignKeyConstraint baseColumnNames="CATEGORY_ID" baseTableName="PRODUCTS" constraintName="FK_PRODUCTS_CATEGORIES" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="CATEGORY_ID" referencedTableName="PRODUCT_CATEGORIES" validate="true"/&gt;
+    &lt;/changeSet&gt;
+    &lt;changeSet author="opc (generated)" id="1599496059318-30"&gt;
+        &lt;addForeignKeyConstraint baseColumnNames="LOCATION_ID" baseTableName="WAREHOUSES" constraintName="FK_WAREHOUSES_LOCATIONS" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="LOCATION_ID" referencedTableName="LOCATIONS" validate="true"/&gt;
+    &lt;/changeSet&gt;
+&lt;/databaseChangeLog&gt;
+
+</pre></body></html>
