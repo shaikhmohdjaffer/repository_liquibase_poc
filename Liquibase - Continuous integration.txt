@@ -1,0 +1,47 @@
+Introduction
+
+ Hey Everyone in this video we're going to look at how we can set up a continuous integration process to test and validate our database changes that we make to our Oracle schemas
+ We are going to use Visual Studo Code to source control our database changes and command line of the Liquibase tool to automate the comparisons of our schemas to automate our validation process and our build process to make sure that the changes that we're making to our local schemas are valid and that we haven't introduced any issues or bottlenecks into our database
+ 
+   let's get started
+ 
+Jenkins 
+ 
+ I'm going to use Jenkins as my build system or my CI system.. as most of you might know the purpose of continuous integration is to make sure that the changes that you've made to your project or your database or your source code hasn't broken anything else in your project
+ 
+ to make sure that everything can compile successfully from scratch once you've introduced your changes.. in order to follow a similar process here what I'm going to do first is to make a couple of changes to one of my development schemas and get those changes into source control once in source control then we're going to build in Jenkins to make sure that our changes are valid 
+
+SOCO Project & changes
+ I have already configured some projects .. here we have this project in source control and as you can see currently there's no changes for me to check-in let's go ahead and make a couple of changes 
+
+ let's start off by making a table change let's go ahead and add a new column and let's make another change by dropping View1 and creating View2
+ 
+After Changes 
+   we made a couple of changes now let's go back in here refresh source control for Oracle.. as we can see here it has detected our changes let's select our changes write a comment and check them into our git repository
+ 
+ Our changes are now taken to source control..the next thing we want to do is to make sure that these changes are valid and that we haven't broken anything else in our database whether it's dependencies or anything else 
+ 
+Run Build 
+Now, that the changes are checked in..  let's go ahead and run a build in Jenkins and while we do that I'll walk you through how we've configured our build process in order to build our Oracle schema 
+ 
+   let's go ahead and kick off a build..  you can kick up your build either automatically every times a change is checked into your source control repository or you can run it manually...our build is currently running 
+ 
+Build Config 
+ let's go ahead and take a look at how we've actually configured this build and we've done this primarily by using the command line of our schema compare and data compare tools   what we've done is we've pointed it to our git repository that we checked in our changes to   we're building the Dev branch because we're working with git and here we've put together a set of batch files using the commands of schema compare and data compare as well as some commands from sequel plus 
+ 
+ I'll walk you through in a little bit   for our first step what we're doing is we're running the CI build command from our tools folder   we've gone ahead and checked in those those command file or batch files into our workspace folder
+ 
+Workspace Folder 
+   here I mean the tools folder windows we've set of these batch files and the file you can see here we're running is CI build .bat which is right here   let's take a look at the content of that real quick.. as I said the purpose of this step is to make sure that we can build the schema from scratch   making sure that we can build all the objects from scratch without any syntax or completion errors and to do that first of all we've created a dedicated schema just for the purposes of the build and that schema is is called HR CI build which is sitting on our oracle database here 
+ 
+HR_CI_BUILD 
+   if I go back to here you can see that we have that dedicated schema here which is used primarily for build purposes and nothing else   what we're doing first is we're cleaning up this schema by dropping all objects .. for which we have a scripts in our tools folder called drop all objects and we're executing that against that schema - to start with   we have an empty schema - to begin with as first step first part of our build process once we've done that then our next step is to utilize the the command line of schema compare 
+ 
+ as you can see here to compare our source which is a scripts folder from our git repository to that target schema that we just looked at..
+ 
+ we're basically deploying all the objects that we have in our source control repository against that empty schema and to make sure that we can build that schema successfully from scratch and that's it ... that's all we're doing as part of this specific step. 
+ 
+   let's go back to our build process here real quick make sure our build was successful ok as you can see our build was successful meaning that we were able to build our database from scratch making sure that all the objects can be built successfully 
+ 
+ Conclusion
+ In this video we used jenkins but you can actually use any CI tool out there... you can use jenkins you can use teamcity you can use TFS and any other CI systems that exist out there as long as they can run a Windows batch command or powershell or even a command line through Linux... because we do have a command line for our Oracle tools that you can run on a Linux system...you can you can pretty much set up this process on any build system or a build system that you might have in place within your organization 

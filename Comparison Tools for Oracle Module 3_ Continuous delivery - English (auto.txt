@@ -1,0 +1,11 @@
+hey everyone, in this video we're going to look at how we can implement a continuous delivery process for the Oracle changes that we make to our Oracle schemas and databases 
+
+we were able to source control our database changes and also run automated builds against those changes through a continuous integration process to make sure that all of our changes are valid 
+
+in this video I'd like to extend that and talk about how we can take those successful build and deploy those out to to target environments so let's get started 
+
+we're utilizing the command line of our schema compare and data compare tools to to configure these deployments that means you can use any automation system out there that does accept command line or powershell or linux command line in order to orchestrate your release process 
+
+
+For demo purpose I installed Build Pipeline plug-in and added three build process in it which are triggered after we make changes to our Oracle schema. The three build process here represents3 different database as Dev Test & prod. Let's have a look at each of these process.
+
