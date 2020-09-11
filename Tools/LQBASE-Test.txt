@@ -34,6 +34,14 @@ liquibase --changeLogFile=C:\Users\opc\Desktop\SONY\Liquibase\LQBASE_TEST\dbchan
 
 ##LQBASE-Test-Build4
 echo off
+echo == Execute update command to apply the changes using the changeLogFile ==
+
+cd C:\Users\opc\Desktop\SONY\Liquibase\LQBASE_TEST
+
+liquibase --changeLogFile=C:\Users\opc\Desktop\SONY\Liquibase\LQBASE_TEST\dbchangelog_DEV_TO_TEST.xml update
+
+##LQBASE-Test-Build5
+echo off
 echo == Execute diff command after applying changelogs to validate the changes ==
 
 cd C:\Users\opc\Desktop\SONY\Liquibase\LQBASE_TEST
