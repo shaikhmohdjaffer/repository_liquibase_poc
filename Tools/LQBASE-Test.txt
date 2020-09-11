@@ -26,7 +26,7 @@ diffChangeLog
 
 ##LQBASE-Test-Build3
 echo off
-echo == Execute update command to apply the changes using the changeLogFile ==
+echo == Execute updateSQL command to generate the sql script using the changeLogFile ==
 
 cd C:\Users\opc\Desktop\SONY\Liquibase\LQBASE_TEST
 

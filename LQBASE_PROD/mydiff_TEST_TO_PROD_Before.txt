@@ -10,7 +10,8 @@ Missing Check Constraint(s): NONE
 Unexpected Check Constraint(s): NONE
 Changed Check Constraint(s): NONE
 Missing Column(s): NONE
-Unexpected Column(s): NONE
+Unexpected Column(s): 
+     LQBASE_PROD.CONTACTS.COLUMN1
 Changed Column(s): NONE
 Missing Database Package(s): NONE
 Unexpected Database Package(s): NONE

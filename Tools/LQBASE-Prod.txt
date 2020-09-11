@@ -1,6 +1,6 @@
 ##LQBASE-Prod
 
-##LQBASE-Prod-Build1
+##LQBASE-Test-Build1
 echo off
 echo == Execute diff command to generate difference between two schemas before applying changelog ==
 
@@ -12,7 +12,7 @@ liquibase --outputFile=mydiff_TEST_TO_PROD_Before.txt ^
 --referencePassword=LQBasetest##123 ^
 diff
 
-##LQBASE-Prod-Build2
+##LQBASE-Test-Build2
 echo off
 echo == Execute diffChangeLog command to generate changelog based on the differences between the schemas ==
 
@@ -24,15 +24,23 @@ liquibase --changeLogFile=dbchangelog_TEST_TO_PROD.xml ^
 --referencePassword=LQBasetest##123 ^
 diffChangeLog
 
-##LQBASE-Prod-Build3
+##LQBASE-Test-Build3
 echo off
-echo == Execute update command to apply the changes using the changeLogFile ==
+echo == Execute updateSQL command to generate the sql script using the changeLogFile ==
 
 cd C:\Users\opc\Desktop\SONY\Liquibase\LQBASE_PROD
 
 liquibase --changeLogFile=C:\Users\opc\Desktop\SONY\Liquibase\LQBASE_PROD\dbchangelog_TEST_TO_PROD.xml --outputFile=dbchangelog_Script_TEST_TO_PROD.sql updateSQL
 
-##LQBASE-Prod-Build4
+##LQBASE-Test-Build4
+echo off
+echo == Execute update command to apply the changes using the changeLogFile ==
+
+cd C:\Users\opc\Desktop\SONY\Liquibase\LQBASE_PROD
+
+liquibase --changeLogFile=C:\Users\opc\Desktop\SONY\Liquibase\LQBASE_PROD\dbchangelog_TEST_TO_PROD.xml update
+
+##LQBASE-Test-Build5
 echo off
 echo == Execute diff command after applying changelogs to validate the changes ==
 
